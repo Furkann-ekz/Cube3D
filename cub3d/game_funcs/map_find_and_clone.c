@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:09:12 by fekiz             #+#    #+#             */
-/*   Updated: 2024/07/30 17:37:28 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/07/30 18:13:43 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,31 @@ static int	pointer_counts(char **str)
 	return (i);
 }
 
+static int	give_me_map_temp(t_game *game, int i)
+{
+	int	x;
+	int	z;
+	int	count;
+
+	x = 0;
+	z = i;
+	count = pointer_counts(game->map_values + i) + 1;
+	game->map_temp = (char **)malloc(sizeof(char *) * count);
+	if (!game->map_temp)
+		return (get_free(game), -1);
+	while (game->map_values[z])
+	{
+		game->map_temp[x] = (char *)malloc(ft_strlen(game->map_values[z]) + 1);
+		if (!game->map_temp[x])
+			return (get_free(game), -1);
+		ft_strcpy(game->map_temp[x], game->map_values[z]);
+		z++;
+		x++;
+	}
+	game->map_temp[x] = NULL;
+	return (0);
+}
+
 static int	map_clone(t_game *game, int i)
 {
 	int	x;
@@ -58,6 +83,8 @@ static int	map_clone(t_game *game, int i)
 		x++;
 	}
 	game->map[x] = NULL;
+	if (give_me_map_temp(game, i) == -1)
+		return (-1);
 	if (map_check(game->map, game) != -1)
 		return (0);
 	return (-1);

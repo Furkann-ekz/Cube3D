@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 07:52:20 by fekiz             #+#    #+#             */
-/*   Updated: 2024/07/30 15:58:35 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/07/30 18:25:46 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct cube3d
 {
 	char		**map_values;
 	char		**map;
+	char		**map_temp;
 	char		*m_tmp;
 	char		*temp;
 	int			fd;
@@ -48,5 +49,6 @@ char	**ft_split(char *s, char c);
 void	get_free(t_game *list);
 int		map_find(char **map, t_game *game);
 int		map_check(char **map, t_game *game);
+int		can_move(char **map, t_game *game);
 
 #endif
