@@ -6,11 +6,33 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:45:27 by fekiz             #+#    #+#             */
-/*   Updated: 2024/07/30 18:28:41 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/07/31 16:00:27 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int	can_move(char **map, t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	(void)game;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'F' && map[i][j + 1] != '\0'
+				&& map[i][j + 1] != 'F' && map[i][j + 1] != '1')
+				return (-1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 int	character(char c)
 {
@@ -81,5 +103,6 @@ int	map_check(char **map, t_game *game)
 	}
 	game->last_wall = last_wall(game);
 	f_giver(game);
+	give_me_textures_and_colors(game);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:09:12 by fekiz             #+#    #+#             */
-/*   Updated: 2024/07/30 18:13:43 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/07/31 15:57:33 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,13 @@ int	map_find(char **map, t_game *game)
 	while (map[++i])
 	{
 		j = 0;
+		while (map[i][j] == 32 || (map[i][j] >= 9 && map[i][j] <= 13))
+			j++;
 		while (map[i][j] && map[i][j] == '1')
 		{
+			if (map[i][j + 1] && map[i][j + 1] != '1' && !(map[i][j + 1] == 32
+				|| (map[i][j + 1] >= 9 && map[i][j + 1] <= 13)))
+				return (-1);
 			j++;
 			if (map[i][j] == '\0')
 				return (map_clone(game, i));
