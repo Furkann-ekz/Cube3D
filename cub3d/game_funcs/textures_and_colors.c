@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:22:10 by fekiz             #+#    #+#             */
-/*   Updated: 2024/07/31 16:03:55 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/02 10:33:23 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*ft_strdup(const char *str)
 	return (str2);
 }
 
-void	give_me_textures_and_colors(t_game *game)
+int	give_me_textures_and_colors(t_game *game)
 {
 	int	i;
 
@@ -51,5 +51,8 @@ void	give_me_textures_and_colors(t_game *game)
 			game->c = ft_strdup(game->map_values[i]);
 		i++;
 	}
-	// Karakterden sonraki kısmı alacağım. Örnek: EA için "./textures/t4.xpm"
+	if (!(game->no) || !(game->so) || !(game->ea) || !(game->we) || !(game->c) || !(game->f))
+		return (-1);
+	return (0);
 }
+	// Karakterden sonraki kısmı alacağım. Örnek: EA için "./textures/t4.xpm"

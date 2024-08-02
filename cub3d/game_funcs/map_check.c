@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:45:27 by fekiz             #+#    #+#             */
-/*   Updated: 2024/07/31 16:00:27 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/02 10:33:42 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	map_check(char **map, t_game *game)
 	}
 	game->last_wall = last_wall(game);
 	f_giver(game);
-	give_me_textures_and_colors(game);
+	if (give_me_textures_and_colors(game) == -1)
+		return (-1);
 	return (0);
 }

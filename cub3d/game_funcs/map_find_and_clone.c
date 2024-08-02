@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:09:12 by fekiz             #+#    #+#             */
-/*   Updated: 2024/07/31 15:57:33 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/02 10:34:02 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ static int	map_clone(t_game *game, int i)
 	game->map[x] = NULL;
 	if (give_me_map_temp(game, i) == -1)
 		return (-1);
-	if (map_check(game->map, game) != -1)
-		return (0);
-	return (-1);
+	if (map_check(game->map, game) == -1)
+		return (-1);
+	return (0);
 }
 
 int	map_find(char **map, t_game *game)
