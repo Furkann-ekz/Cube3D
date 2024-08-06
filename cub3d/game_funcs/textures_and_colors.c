@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:22:10 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/02 10:33:23 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/06 17:02:15 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	give_me_textures_and_colors(t_game *game)
 			game->c = ft_strdup(game->map_values[i]);
 		i++;
 	}
-	if (!(game->no) || !(game->so) || !(game->ea) || !(game->we) || !(game->c) || !(game->f))
+	if (!(game->no) || !(game->so) || !(game->ea)
+		|| !(game->we) || !(game->c) || !(game->f))
 		return (-1);
 	return (0);
 }
