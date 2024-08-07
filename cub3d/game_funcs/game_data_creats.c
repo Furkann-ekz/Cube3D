@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 14:07:01 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/07 18:03:26 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/07 19:07:38 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	double_new_line(char *map)
 		i++;
 	while (map[i])
 	{
+		printf("%c", map[i]);
 		if (map[i] == '\n' && map[i + 1] && map[i + 1] == '\n')
 			return (-1);
 		i++;

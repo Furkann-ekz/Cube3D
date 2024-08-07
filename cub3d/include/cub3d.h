@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 07:52:20 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/07 17:31:14 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/07 19:07:21 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int		file_name_control(char *s1, char *s2);
 int		line_count(t_game *game);
 int		any_zero_in_outside(char **map);
 int		double_new_line(char *map);
-
 void	get_free(t_game *list);
 
 #endif
