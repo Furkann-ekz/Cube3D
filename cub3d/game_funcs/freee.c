@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:57:22 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/06 17:46:08 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/07 15:47:50 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,26 +82,10 @@ static void	pointers_free(t_game *list)
 	list_imgs_free(list);
 }
 
-static void	give_null(t_game *list)
-{
-	list->map_values = NULL;
-	list->map = NULL;
-	list->map_temp = NULL;
-	list->m_tmp = NULL;
-	list->temp = NULL;
-	list->no = NULL;
-	list->we = NULL;
-	list->so = NULL;
-	list->ea = NULL;
-	list->f = NULL;
-	list->c = NULL;
-	list->last_walls = NULL;
-}
-
 void	get_free(t_game *list)
 {
 	double_pointers_free(list);
+
 	pointers_free(list);
 	free(list);
-	give_null(list);
 }

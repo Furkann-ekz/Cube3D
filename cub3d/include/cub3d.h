@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 07:52:20 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/06 18:32:59 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/07 17:31:14 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ typedef struct imgs
 	void	*e;
 	void	*p;
 }				t_imgs;
+
+typedef struct bools
+{
+	bool	n;
+	bool	e;
+	bool	w;
+	bool	s;
+}			t_bools;
 
 typedef struct cube3d
 {
@@ -56,11 +64,11 @@ char	**ft_split(char *s, char c);
 
 int		map_find(char **map, t_game *game);
 int		map_check(char **map, t_game *game);
-int		can_move(char **map);
 int		give_me_textures_and_colors(t_game *game);
 int		file_name_control(char *s1, char *s2);
 int		line_count(t_game *game);
 int		any_zero_in_outside(char **map);
+int		double_new_line(char *map);
 
 void	get_free(t_game *list);
 

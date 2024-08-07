@@ -6,32 +6,11 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:45:27 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/06 18:46:35 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/07 17:26:32 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-int	can_move(char **map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == 'F' && map[i][j + 1] != '\0'
-				&& map[i][j + 1] != 'F' && map[i][j + 1] != '1')
-				return (-1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
 
 int	character(char c)
 {
@@ -77,12 +56,17 @@ static int	f_giver(t_game *game)
 		j = 0;
 		while (game->map_temp[i][j])
 		{
+			if (game->map_temp[i][j] != ' ' && game->map_temp[i][j] != '1'
+				&& game->map_temp[i][j] != '0' && game->map_temp[i][j] != 'N'
+				&& game->map_temp[i][j] != 'E' && game->map_temp[i][j] != 'W'
+				&& game->map_temp[i][j] != 'S')
+				return (-1);
 			if (game->map_temp[i][j] == ' ')
 				game->map_temp[i][j] = 'F';
 			j++;
 		}
 	}
-	if (can_move(game->map_temp) == -1)
+	if (any_zero_in_outside(game->map_temp) == -1)
 		return (-1);
 	return (0);
 }
@@ -106,8 +90,7 @@ int	map_check(char **map, t_game *game)
 	game->last_walls = last_wall(game);
 	if (!game->last_walls)
 		return (-1);
-	f_giver(game);
-	if (any_zero_in_outside(game->map_temp) == -1)
+	if (f_giver(game) == -1)
 		return (-1);
 	if (give_me_textures_and_colors(game) == -1)
 		return (-1);
