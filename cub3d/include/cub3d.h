@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 07:52:20 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/07 19:07:21 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/08 19:33:03 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,29 @@
 # include "stdbool.h"
 # include "../mlx/mlx.h"
 
+# include "string.h"
+
 typedef struct imgs
 {
-	void	*w;
-	void	*c;
-	void	*z;
-	void	*e;
-	void	*p;
+	void	*ea;
+	void	*we;
+	void	*no;
+	void	*so;
 }				t_imgs;
 
-typedef struct bools
+typedef struct fds
 {
-	bool	n;
-	bool	e;
-	bool	w;
-	bool	s;
-}			t_bools;
+	int	north;
+	int	south;
+	int	west;
+	int	east;
+}			t_files;
 
 typedef struct cube3d
 {
 	char		**map_values;
 	char		**map;
 	char		**map_temp;
-	char		*m_tmp;
 	char		*temp;
 	char		*no;
 	char		*we;
@@ -50,9 +50,14 @@ typedef struct cube3d
 	char		*ea;
 	char		*f;
 	char		*c;
-	int			fd;
+	void		*mlx;
+	void		*window;
 	int			*last_walls;
+	int			fd;
+	int			f_color;
+	int			c_color;
 	struct imgs	imgs;
+	struct fds	files;
 }				t_game;
 
 t_game	*game_data_creats(char *av);
@@ -64,11 +69,16 @@ char	**ft_split(char *s, char c);
 
 int		map_find(char **map, t_game *game);
 int		map_check(char **map, t_game *game);
-int		give_me_textures_and_colors(t_game *game);
+int		give_me_textures_and_colors(char **map, t_game *game);
 int		file_name_control(char *s1, char *s2);
 int		line_count(t_game *game);
 int		any_zero_in_outside(char **map);
 int		double_new_line(char *map);
+int		start(t_game *game);
+int		close_game(t_game *list);
+int		ft_atoi(const char *str);
+
 void	get_free(t_game *list);
+void	set_nulls(t_game *game);
 
 #endif

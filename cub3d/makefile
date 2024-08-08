@@ -7,22 +7,31 @@ SRCS	=	app/cub3d.c							\
 			game_funcs/map_check.c				\
 			game_funcs/map_find_and_clone.c		\
 			game_funcs/textures_and_colors.c	\
+			game_funcs/map_check_continue.c		\
+			game_funcs/start.c					\
+			game_funcs/ft_atoi.c				\
 
 OBJS	=	$(SRCS:.c=.o)
 CFLAGS	=	-Wall -Wextra -Werror
-NAME	=	cube3d.a
-
+NAME	=	cub3d
+MINI	=	mlx/libmlx.a
+MLXFLAG	=	-L./mlx -lmlx -framework AppKit -framework OpenGL
 all: $(NAME)
-	ar rc $(NAME) $(OBJS)
 
-$(NAME):
-	gcc $(CFLAGS) -c $(SRCS)
+$(MINI):
+	make -C mlx/
+
+$(NAME): $(MINI) $(OBJS)
+	gcc $(CFLAGS) $(MLXFLAG) $(OBJS) -o $(NAME)
+	make clean
 
 clean:
 	rm -rf $(OBJS)
+	make clean -C mlx/
 
 fclean: clean
 	rm -rf $(NAME)
+	make clean -C mlx/
 
 re: fclean $(NAME)
 

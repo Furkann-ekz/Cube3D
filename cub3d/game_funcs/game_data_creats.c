@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 14:07:01 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/07 19:07:38 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/08 19:31:15 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	double_new_line(char *map)
 		i++;
 	while (map[i])
 	{
-		printf("%c", map[i]);
 		if (map[i] == '\n' && map[i + 1] && map[i + 1] == '\n')
 			return (-1);
 		i++;
@@ -43,8 +42,11 @@ t_game	*game_data_creats(char *av)
 	t_game	*game;
 
 	game = malloc(sizeof(t_game));
+	if (!game)
+		return (NULL);
 	if (ft_strlen(av) < 5 || file_name_control(av, ".cub") == -1)
-		return (get_free(game), NULL);
+		return (NULL);
+	set_nulls(game);
 	game->fd = open(av, O_RDONLY, 0777);
 	if (game->fd == -1)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:27:54 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/07 17:23:18 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/08 19:29:41 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ static int	control(char **map, int i, int j)
 {
 	if (map[i][j] == 'F'
 		&& ((map[i][j + 1] && map[i][j + 1] != 'F' && map[i][j + 1] != '1')
-		|| (map[i][j - 1] && map[i][j - 1] != 'F' && map[i][j - 1] != '1')
-		|| (map[i + 1] && map[i + 1][j] != 'F' && map[i + 1][j] != '1')
-		|| (map[i - 1] && map[i - 1][j] != 'F' && map[i - 1][j] != '1')))
+		|| (j != 0 && map[i][j - 1]
+			&& map[i][j - 1] != 'F' && map[i][j - 1] != '1')
+		|| (map[i + 1] && map[i + 1][j]
+			&& map[i + 1][j] != 'F' && map[i + 1][j] != '1')
+		|| (i != 0 && map[i - 1] && map[i - 1][j]
+			&& map[i - 1][j] != 'F' && map[i - 1][j] != '1')))
 		return (-1);
 	return (0);
 }
@@ -69,8 +72,10 @@ int	any_zero_in_outside(char **map)
 		{
 			if (control(map, i, j) == -1)
 				return (-1);
-			if (map[i][j] == '0' && (!map[i + 1][j] || !map[i + 1]))
+			if (map[i][j] == '0' && (!map[i + 1] || !map[i + 1][j]))
+			{
 				return (-1);
+			}
 		}
 	}
 	if (map_characters_control(map) == -1)

@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:57:22 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/07 15:47:50 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/08 19:30:44 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ static void	double_pointers_free(t_game	*list)
 	int	i;
 
 	i = -1;
-	if (!list)
-		return ;
 	if (list->map_values)
 	{
 		while (list->map_values[++i])
@@ -41,26 +39,20 @@ static void	double_pointers_free(t_game	*list)
 	}
 }
 
-static void	list_imgs_free(t_game *list)
+void	list_imgs_free(t_game *list)
 {
-	if (list->imgs.w)
-		free(list->imgs.w);
-	if (list->imgs.c)
-		free(list->imgs.c);
-	if (list->imgs.z)
-		free(list->imgs.z);
-	if (list->imgs.e)
-		free(list->imgs.e);
-	if (list->imgs.p)
-		free(list->imgs.p);
+	if (list->imgs.so)
+		free(list->imgs.so);
+	if (list->imgs.no)
+		free(list->imgs.no);
+	if (list->imgs.ea)
+		free(list->imgs.ea);
+	if (list->imgs.we)
+		free(list->imgs.we);
 }
 
 static void	pointers_free(t_game *list)
 {
-	if (!list)
-		return ;
-	if (list->m_tmp)
-		free(list->m_tmp);
 	if (list->temp)
 		free(list->temp);
 	if (list->no)
@@ -84,8 +76,18 @@ static void	pointers_free(t_game *list)
 
 void	get_free(t_game *list)
 {
-	double_pointers_free(list);
+	if (list)
+	{
+		double_pointers_free(list);
+		pointers_free(list);
+		free(list);
+	}
+	system("leaks cub3d");
+}
 
-	pointers_free(list);
-	free(list);
+int	close_game(t_game *list)
+{
+	mlx_destroy_window(list->mlx, list->window);
+	get_free(list);
+	exit (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:09:12 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/07 19:07:01 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/08 18:45:33 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ static int	give_me_map_temp(t_game *game, int i)
 	count = pointer_counts(game->map_values + i) + 1;
 	game->map_temp = (char **)malloc(sizeof(char *) * count);
 	if (!game->map_temp)
-		return (get_free(game), -1);
+		return (-1);
 	while (game->map_values[z])
 	{
 		game->map_temp[x] = (char *)malloc(ft_strlen(game->map_values[z]) + 1);
 		if (!game->map_temp[x])
-			return (get_free(game), -1);
+			return (-1);
 		ft_strcpy(game->map_temp[x], game->map_values[z]);
 		z++;
 		x++;
@@ -72,12 +72,12 @@ static int	map_clone(t_game *game, int i)
 	count = pointer_counts(game->map_values + i) + 1;
 	game->map = (char **)malloc(sizeof(char *) * count);
 	if (!game->map)
-		return (get_free(game), -1);
+		return (-1);
 	while (game->map_values[z])
 	{
 		game->map[x] = (char *)malloc(ft_strlen(game->map_values[z]) + 1);
 		if (!game->map[x])
-			return (get_free(game), -1);
+			return (-1);
 		ft_strcpy(game->map[x], game->map_values[z]);
 		z++;
 		x++;
@@ -101,7 +101,8 @@ int	map_find(char **map, t_game *game)
 		j = 0;
 		while (map[i][j] == 32 || (map[i][j] >= 9 && map[i][j] <= 13))
 			j++;
-		while (map[i][j] && map[i][j] == '1')
+		while (map[i][j] && (map[i][j] == '1' || (map[i][j] == 32
+				|| (map[i][j] >= 9 && map[i][j] <= 13))))
 		{
 			if (map[i][j + 1] && map[i][j + 1] != '1' && !(map[i][j + 1] == 32
 				|| (map[i][j + 1] >= 9 && map[i][j + 1] <= 13)))
