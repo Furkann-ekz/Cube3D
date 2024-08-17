@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 15:45:36 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/08 19:42:42 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/14 19:03:09 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	create_floor_and_sky(t_game *game)
 		while (++x <= 1920)
 			mlx_pixel_put(game->mlx, game->window, x, y, game->c_color);
 	}
+	y--;
 	while (++y <= 1280)
 	{
 		x = -1;

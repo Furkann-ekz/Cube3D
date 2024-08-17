@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:27:54 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/08 19:29:41 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/17 11:16:01 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	map_characters_control(char **map)
 		j = -1;
 		while (map[i][++j])
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'w'
+			if (map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W'
 				|| map[i][j] == 'S')
 				count++;
 		}
