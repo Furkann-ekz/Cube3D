@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:57:22 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/14 19:18:51 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/20 18:33:50 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	get_free(t_game *list)
 		free(list);
 		list = NULL;
 	}
-	system("leaks cub3d");
+	//system("leaks cub3d");
 }
 
 int	close_game(t_game *list)

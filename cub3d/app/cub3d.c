@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:41:45 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/08 19:32:50 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/20 19:02:53 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,25 @@ void	set_nulls(t_game *game)
 	game->imgs.we = NULL;
 }
 
+char	get_direction(char **map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			if (map[i][j] == 'N' || map[i][j] == 'E'
+				|| map[i][j] == 'W' || map[i][j] == 'S')
+				return (map[i][j]);
+		}
+	}
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_game	*game;
@@ -42,6 +61,9 @@ int	main(int ac, char **av)
 	game = game_data_creats(av[1]);
 	if (game == NULL)
 		return (get_free(game), printf("Error: The map cannot be read.\n"));
+	game->direction = get_direction(game->map);
+	if (game->direction == 0)
+		return (get_free(game), printf("Error: Direction error.\n"));
 	if (start(game) == -1)
 		return (get_free(game), printf("Error: This game can't be opened!\n"));
 }

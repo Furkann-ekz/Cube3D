@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 14:07:01 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/14 19:18:27 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/20 14:38:43 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static int	ft_strcmp(char *str1, char *str2)
 	int	i;
 
 	i = 0;
+	if (!str1 || !str2)
+		return (-1);
 	while (str1[i] && str2[i])
 	{
 		if (str2[i] == '\0')

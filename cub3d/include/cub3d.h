@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 07:52:20 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/08 19:33:03 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/20 19:00:10 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "fcntl.h"
 # include "stdbool.h"
 # include "../mlx/mlx.h"
+# include "math.h"
 
 # include "string.h"
 
@@ -28,6 +29,10 @@ typedef struct imgs
 	void	*we;
 	void	*no;
 	void	*so;
+	char	*no_addr;
+	char	*so_addr;
+	char	*ea_addr;
+	char	*we_addr;
 }				t_imgs;
 
 typedef struct fds
@@ -38,27 +43,39 @@ typedef struct fds
 	int	east;
 }			t_files;
 
+typedef struct dda
+{
+	double	playerx;
+	double	playery;
+	double	directx;
+	double	directy;
+	double	camx;
+	double	camy;
+}			t_dda;
+
 typedef struct cube3d
 {
-	char		**map_values;
-	char		**map;
-	char		**map_temp;
-	char		*temp;
-	char		*no;
-	char		*we;
-	char		*so;
-	char		*ea;
-	char		*f;
-	char		*c;
-	void		*mlx;
-	void		*window;
-	int			*last_walls;
-	int			fd;
-	int			f_color;
-	int			c_color;
-	struct imgs	imgs;
-	struct fds	files;
-}				t_game;
+	char			**map_values;
+	char			**map;
+	char			**map_temp;
+	char			*temp;
+	char			*no;
+	char			*we;
+	char			*so;
+	char			*ea;
+	char			*f;
+	char			*c;
+	void			*mlx;
+	void			*window;
+	int				*last_walls;
+	int				fd;
+	int				f_color;
+	int				c_color;
+	char			direction;
+	struct imgs		imgs;
+	struct fds		files;
+	struct dda		dda;
+}					t_game;
 
 t_game	*game_data_creats(char *av);
 
@@ -77,6 +94,7 @@ int		double_new_line(char *map);
 int		start(t_game *game);
 int		close_game(t_game *list);
 int		ft_atoi(const char *str);
+int		get_images(t_game *game);
 
 void	get_free(t_game *list);
 void	set_nulls(t_game *game);
