@@ -6,13 +6,13 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 14:39:00 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/08 19:18:59 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/21 15:02:37 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -35,7 +35,6 @@ static char	*ft_strjoin(char *s1, char *s2)
 	while (s2[++j] != 0)
 		s3[i + j] = s2[j];
 	s3[i + j] = '\0';
-	free(s1);
 	return (s3);
 }
 

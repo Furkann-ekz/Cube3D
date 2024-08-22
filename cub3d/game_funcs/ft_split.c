@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:45:23 by fekiz             #+#    #+#             */
-/*   Updated: 2024/07/31 15:59:08 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/21 13:45:19 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-static char	*ft_strdup(char *str)
+char	*ft_strdup(char *str)
 {
 	int		i;
 	char	*str2;

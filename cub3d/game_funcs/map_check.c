@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:45:27 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/08 16:51:02 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/22 14:13:39 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,25 @@ static int	*last_wall(t_game *game)
 {
 	int	i;
 	int	j;
-	int	count;
+	int	*walls;
 
 	i = 0;
-	count = 0;
-	game->last_walls = (int *)malloc(sizeof(int) * line_count(game) + 1);
-	if (!(game->last_walls))
+	walls = (int *)malloc(sizeof(int) * (line_count(game) + 1));
+	if (!(walls))
 		return (NULL);
 	while (game->map_temp[i])
 	{
 		j = 0;
 		while (game->map_temp[i][j])
 			j++;
-		if (game->map_temp[i][j - 1] != '1')
-			return (NULL);
-		game->last_walls[i] = j;
+		j--;
+		if (game->map_temp[i][j] != '1')
+			return (free(walls), NULL);
+		walls[i] = j;
 		i++;
 	}
-	game->last_walls[i] = 0;
-	return (game->last_walls);
+	walls[i] = 0;
+	return (walls);
 }
 
 static int	f_giver(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 07:52:20 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/20 19:00:10 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/22 14:54:49 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ typedef struct fds
 
 typedef struct dda
 {
-	double	playerx;
-	double	playery;
-	double	directx;
-	double	directy;
-	double	camx;
-	double	camy;
+	float	playerx;
+	float	playery;
+	float	directx;
+	float	directy;
+	float	camx;
+	float	camy;
 }			t_dda;
 
 typedef struct cube3d
@@ -71,6 +71,10 @@ typedef struct cube3d
 	int				fd;
 	int				f_color;
 	int				c_color;
+	int				x_cord;
+	int				y_cord;
+	int				player_x;
+	int				player_y;
 	char			direction;
 	struct imgs		imgs;
 	struct fds		files;
@@ -83,6 +87,8 @@ size_t	ft_strlen(const char *str);
 
 char	*ft_get_read(int fd);
 char	**ft_split(char *s, char c);
+char	*ft_strdup(char *str);
+char	*ft_strjoin(char *s1, char *s2);
 
 int		map_find(char **map, t_game *game);
 int		map_check(char **map, t_game *game);
@@ -96,7 +102,10 @@ int		close_game(t_game *list);
 int		ft_atoi(const char *str);
 int		get_images(t_game *game);
 
+void	create_floor_and_sky(t_game *game);
 void	get_free(t_game *list);
 void	set_nulls(t_game *game);
+void	grilled_draw(t_game *game);
+void	get_position(t_game *game);
 
 #endif

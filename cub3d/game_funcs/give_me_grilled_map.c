@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_position.c                                  :+:      :+:    :+:   */
+/*   give_me_grilled_map.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 18:23:56 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/22 14:25:37 by fekiz            ###   ########.fr       */
+/*   Created: 2024/08/22 13:58:04 by fekiz             #+#    #+#             */
+/*   Updated: 2024/08/22 14:52:57 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	get_position(t_game *game)
+void	grilled_draw(t_game *game)
 {
 	int	i;
-	int	j;
+	int	y;
+	int	x;
 
 	i = -1;
-	while (game->map[++i])
+	y = -1;
+	while (y <= game->y_cord * 156)
 	{
-		j = -1;
-		while (game->map[i][++j])
+		x = 0;
+		while (x <= 156 * game->x_cord)
 		{
-			if (game->map[i][j] == 'N' || game->map[i][j] == 'E'
-				|| game->map[i][j] == 'W' || game->map[i][j] == 'S')
+			if (x % 156 == 0)
 			{
-				game->player_x = j;
-				game->player_y = i;
+				i = -1;
+				while (i <= game->y_cord * 156)
+				{
+					mlx_pixel_put(game->mlx, game->window, x, i, game->c_color);
+					i++;
+				}
 			}
+			mlx_pixel_put(game->mlx, game->window, x, y, game->c_color);
+			x++;
 		}
+		y += 156;
 	}
 }

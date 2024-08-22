@@ -6,28 +6,47 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:22:10 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/08 19:30:08 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/22 14:38:27 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static char	*ft_strdup(const char *str)
+void	create_floor_and_sky(t_game *game)
 {
-	int		i;
-	char	*str2;
+	int	i;
+	int	x;
+	int	y;
 
-	str2 = malloc(sizeof(char) * ft_strlen(str) + 1);
 	i = 0;
-	if (!str2)
-		return (NULL);
-	while (str[i])
+	y = -1;
+	while (++y <= ((156 * game->y_cord) / 2))
 	{
-		str2[i] = str[i];
-		i++;
+		x = -1;
+		while (++x <= (156 * game->x_cord))
+			mlx_pixel_put(game->mlx, game->window, x, y, game->c_color);
 	}
-	str2[i] = '\0';
-	return (str2);
+	y--;
+	while (++y <= (156 * game->y_cord))
+	{
+		x = -1;
+		while (++x <= (156 * game->x_cord))
+			mlx_pixel_put(game->mlx, game->window, x, y, game->f_color);
+	}
+}
+
+void	get_coordinats(t_game *game)
+{
+	int	i;
+	int	cont;
+
+	i = -1;
+	cont = 0;
+	while (game->last_walls[++i])
+		if (game->last_walls[i] > cont)
+			cont = game->last_walls[i];
+	game->x_cord = cont;
+	game->y_cord = i;
 }
 
 int	get_colors(t_game *game)
@@ -54,6 +73,7 @@ int	get_colors(t_game *game)
 	while (fcolor[++i])
 		free(fcolor[i]);
 	free(fcolor);
+	get_coordinats(game);
 	return (0);
 }
 
