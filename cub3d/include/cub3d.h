@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 07:52:20 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/22 14:54:49 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/22 15:51:47 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@
 # include "math.h"
 
 # include "string.h"
+
+# define FOV 90
+# define P_SPEED 1
+# define R_SPEED 1
+# define DARK 0x00000
+# define WHITE 0xFFFFFF
 
 typedef struct imgs
 {

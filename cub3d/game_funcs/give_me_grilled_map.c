@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 13:58:04 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/22 14:52:57 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/22 15:52:03 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	grilled_draw(t_game *game)
 				i = -1;
 				while (i <= game->y_cord * 156)
 				{
-					mlx_pixel_put(game->mlx, game->window, x, i, game->c_color);
+					mlx_pixel_put(game->mlx, game->window, x, i, WHITE);
 					i++;
 				}
 			}
-			mlx_pixel_put(game->mlx, game->window, x, y, game->c_color);
+			mlx_pixel_put(game->mlx, game->window, x, y, WHITE);
 			x++;
 		}
 		y += 156;

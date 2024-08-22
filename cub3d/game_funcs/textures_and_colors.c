@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:22:10 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/22 14:38:27 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/22 15:58:37 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,23 +49,20 @@ void	get_coordinats(t_game *game)
 	game->y_cord = i;
 }
 
-int	get_colors(t_game *game)
+int	get_colors(t_game *game, int i, char **ccolor, char **fcolor)
 {
-	char	**ccolor;
-	char	**fcolor;
-	int		i;
-
-	i = -1;
 	ccolor = ft_split(game->c + 2, ',');
 	if (!ccolor)
 		return (-1);
 	fcolor = ft_split(game->f + 2, ',');
 	if (!fcolor)
 		return (-1);
-	game->c_color = (ft_atoi(ccolor[0]) << 16)
-		| (ft_atoi(ccolor[1]) << 8) | ft_atoi(ccolor[2]);
-	game->f_color = (ft_atoi(fcolor[0]) << 16)
-		| (ft_atoi(fcolor[1]) << 8) | ft_atoi(fcolor[2]);
+	if (ft_atoi(ccolor[0]) == -1 || ft_atoi(ccolor[1]) == -1 || ft_atoi(ccolor[2]) == -1
+		|| ft_atoi(fcolor[0]) == -1 || ft_atoi(fcolor[1]) == -1 || ft_atoi(fcolor[2]) == -1)
+		return (-1);
+	game->c_color = (ft_atoi(ccolor[0]) << 16) | (ft_atoi(ccolor[1]) << 8) | ft_atoi(ccolor[2]);
+	game->f_color = (ft_atoi(fcolor[0]) << 16) | (ft_atoi(fcolor[1]) << 8) | ft_atoi(fcolor[2]);
+	i = -1;
 	while (ccolor[++i])
 		free(ccolor[i]);
 	free(ccolor);
@@ -79,6 +76,13 @@ int	get_colors(t_game *game)
 
 int	can_we_open_files(t_game *game)
 {
+	char	**ccolor;
+	char	**fcolor;
+	int		i;
+
+	ccolor = NULL;
+	fcolor = NULL;
+	i = -1;
 	game->files.east = open((game->ea + 3), O_RDONLY, 0777);
 	game->files.north = open((game->no + 3), O_RDONLY, 0777);
 	game->files.south = open((game->so + 3), O_RDONLY, 0777);
@@ -90,7 +94,7 @@ int	can_we_open_files(t_game *game)
 	close (game->files.north);
 	close (game->files.south);
 	close (game->files.west);
-	if (get_colors(game) == -1)
+	if (get_colors(game, i, ccolor, fcolor) == -1)
 		return (-1);
 	return (0);
 }
