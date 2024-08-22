@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 07:52:20 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/22 15:51:47 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/22 16:24:12 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # include "string.h"
 
+# define PIXEL 156
 # define FOV 90
 # define P_SPEED 1
 # define R_SPEED 1
@@ -79,6 +80,8 @@ typedef struct cube3d
 	int				c_color;
 	int				x_cord;
 	int				y_cord;
+	int				x;
+	int				y;
 	int				player_x;
 	int				player_y;
 	char			direction;

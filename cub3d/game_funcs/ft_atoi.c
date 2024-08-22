@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 19:13:13 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/22 15:54:20 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/22 16:25:17 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	ft_atoi(const char *str)
 	}
 	while (str[i])
 	{
-		if ((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z'))
+		if ((str[i] >= 'A' && str[i] <= 'Z')
+			|| (str[i] >= 'a' && str[i] <= 'z'))
 			return (-1);
 		count = (str[i] - 48) + (10 * count);
 		i++;

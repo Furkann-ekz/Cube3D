@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:22:10 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/22 15:58:37 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/22 16:24:49 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,14 @@ int	get_colors(t_game *game, int i, char **ccolor, char **fcolor)
 	fcolor = ft_split(game->f + 2, ',');
 	if (!fcolor)
 		return (-1);
-	if (ft_atoi(ccolor[0]) == -1 || ft_atoi(ccolor[1]) == -1 || ft_atoi(ccolor[2]) == -1
-		|| ft_atoi(fcolor[0]) == -1 || ft_atoi(fcolor[1]) == -1 || ft_atoi(fcolor[2]) == -1)
+	if (ft_atoi(ccolor[0]) == -1 || ft_atoi(ccolor[1]) == -1
+		|| ft_atoi(ccolor[2]) == -1 || ft_atoi(fcolor[0]) == -1
+		|| ft_atoi(fcolor[1]) == -1 || ft_atoi(fcolor[2]) == -1)
 		return (-1);
-	game->c_color = (ft_atoi(ccolor[0]) << 16) | (ft_atoi(ccolor[1]) << 8) | ft_atoi(ccolor[2]);
-	game->f_color = (ft_atoi(fcolor[0]) << 16) | (ft_atoi(fcolor[1]) << 8) | ft_atoi(fcolor[2]);
+	game->c_color = (ft_atoi(ccolor[0]) << 16)
+		| (ft_atoi(ccolor[1]) << 8) | ft_atoi(ccolor[2]);
+	game->f_color = (ft_atoi(fcolor[0]) << 16)
+		| (ft_atoi(fcolor[1]) << 8) | ft_atoi(fcolor[2]);
 	i = -1;
 	while (ccolor[++i])
 		free(ccolor[i]);
