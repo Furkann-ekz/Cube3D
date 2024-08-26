@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 07:52:20 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/22 16:24:12 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/26 17:28:05 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,12 @@ typedef struct cube3d
 	int				y_cord;
 	int				x;
 	int				y;
-	int				player_x;
-	int				player_y;
+	float			angle;
+	void			*img_ptr;
+	float			move_speed;
+	float			rot_speed;
+	float			player_x;
+	float			player_y;
 	char			direction;
 	struct imgs		imgs;
 	struct fds		files;
@@ -110,7 +114,10 @@ int		start(t_game *game);
 int		close_game(t_game *list);
 int		ft_atoi(const char *str);
 int		get_images(t_game *game);
+int		keys(int key, t_game *game);
+int		draw_map(t_game *game);
 
+void	keys_two(int key, t_game *game);
 void	create_floor_and_sky(t_game *game);
 void	get_free(t_game *list);
 void	set_nulls(t_game *game);

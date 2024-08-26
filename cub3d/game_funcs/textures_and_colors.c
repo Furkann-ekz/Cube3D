@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:22:10 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/22 16:24:49 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/26 16:44:52 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ void	get_coordinats(t_game *game)
 			cont = game->last_walls[i];
 	game->x_cord = cont;
 	game->y_cord = i;
+	game->rot_speed = 0.05;
+	game->move_speed = 0.1;
+	game->angle = 0;
 }
 
 int	get_colors(t_game *game, int i, char **ccolor, char **fcolor)

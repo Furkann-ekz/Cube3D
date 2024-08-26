@@ -14,6 +14,7 @@ SRCS	=	app/cub3d.c							\
 			game_funcs/ft_atoi.c				\
 			game_funcs/give_me_grilled_map.c	\
 
+
 OBJS	=	$(SRCS:.c=.o)
 CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
 NAME	=	cub3d
