@@ -8,7 +8,7 @@ SRCS	=	app/cub3d.c							\
 			game_funcs/map_find_and_clone.c		\
 			game_funcs/textures_and_colors.c	\
 			game_funcs/map_check_continue.c		\
-			game_funcs/player_position.c		\
+			game_funcs/player.c					\
 			game_funcs/get_images.c				\
 			game_funcs/start.c					\
 			game_funcs/ft_atoi.c				\
@@ -16,7 +16,7 @@ SRCS	=	app/cub3d.c							\
 
 
 OBJS	=	$(SRCS:.c=.o)
-CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address -g
 NAME	=	cub3d
 MINI	=	mlx/libmlx.a
 MLXFLAG	=	-L./mlx -lmlx -framework AppKit -framework OpenGL

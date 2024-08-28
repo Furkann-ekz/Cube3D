@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:41:45 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/21 18:38:49 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/28 19:04:29 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,31 @@ void	set_nulls(t_game *game)
 	game->imgs.we = NULL;
 }
 
-char	get_direction(char **map)
+void	set_direction(t_game *game)
+{
+	if (game->direction == 'N')
+	{
+		game->player.dir_x = 0;
+		game->player.dir_y = -1;
+	}
+	else if (game->direction == 'S')
+	{
+		game->player.dir_x = 0;
+		game->player.dir_y = 1;
+	}
+	else if (game->direction == 'E')
+	{
+		game->player.dir_x = 1;
+		game->player.dir_y = 0;
+	}
+	else if (game->direction == 'W')
+	{
+		game->player.dir_x = -1;
+		game->player.dir_y = 0;
+	}
+}
+
+void	get_direction(char **map, t_game *game)
 {
 	int	i;
 	int	j;
@@ -46,10 +70,10 @@ char	get_direction(char **map)
 		{
 			if (map[i][j] == 'N' || map[i][j] == 'E'
 				|| map[i][j] == 'W' || map[i][j] == 'S')
-				return (map[i][j]);
+				game->direction = map[i][j];
 		}
 	}
-	return (0);
+	set_direction(game);
 }
 
 int	main(int ac, char **av)
@@ -61,9 +85,7 @@ int	main(int ac, char **av)
 	game = game_data_creats(av[1]);
 	if (game == NULL)
 		return (get_free(game), printf("Error: The map cannot be read.\n"));
-	game->direction = get_direction(game->map);
-	if (game->direction == 0)
-		return (get_free(game), printf("Error: Direction error.\n"));
+	get_direction(game->map, game);
 	if (start(game) == -1)
 		return (get_free(game), printf("Error: This game can't be opened!\n"));
 }

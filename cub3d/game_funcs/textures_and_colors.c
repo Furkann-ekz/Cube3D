@@ -6,33 +6,39 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:22:10 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/26 16:44:52 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/28 19:16:56 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	create_floor_and_sky(t_game *game)
+int	create_wallpaper(t_game *game)
 {
 	int	i;
-	int	x;
-	int	y;
+	int	j;
 
-	i = 0;
-	y = -1;
-	while (++y <= ((156 * game->y_cord) / 2))
+	game->img_ptr = mlx_new_image(game->mlx, game->x_cord * 156, game->y_cord * 156);
+	if (!(game->img_ptr))
+		return (-1);
+	game->wallpaper = (int *)mlx_get_data_addr(game->img_ptr, &i, &i, &i);
+	if (!(game->wallpaper))
+		return (-1);
+	i = -1;
+	while (++i < (game->y_cord * 156) / 2)
 	{
-		x = -1;
-		while (++x <= (156 * game->x_cord))
-			mlx_pixel_put(game->mlx, game->window, x, y, game->c_color);
+		j = -1;
+		while (++j < game->x_cord * 156)
+			game->wallpaper[j + i * game->x_cord * 156] = game->c_color;
 	}
-	y--;
-	while (++y <= (156 * game->y_cord))
+	i--;
+	while (++i < game->y_cord * 156)
 	{
-		x = -1;
-		while (++x <= (156 * game->x_cord))
-			mlx_pixel_put(game->mlx, game->window, x, y, game->f_color);
+		j = -1;
+		while (++j < game->x_cord * 156)
+			game->wallpaper[j + i * game->x_cord * 156] = game->f_color;
 	}
+	grilled_draw(game);
+	return (0);
 }
 
 void	get_coordinats(t_game *game)
@@ -47,9 +53,8 @@ void	get_coordinats(t_game *game)
 			cont = game->last_walls[i];
 	game->x_cord = cont;
 	game->y_cord = i;
-	game->rot_speed = 0.05;
-	game->move_speed = 0.1;
-	game->angle = 0;
+	game->player.rot_speed = 0.05;
+	game->player.move_speed = 0.05;
 }
 
 int	get_colors(t_game *game, int i, char **ccolor, char **fcolor)

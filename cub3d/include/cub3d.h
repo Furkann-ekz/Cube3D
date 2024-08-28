@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 07:52:20 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/26 17:28:05 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/28 19:29:25 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,15 @@ typedef struct fds
 	int	east;
 }			t_files;
 
-typedef struct dda
+typedef struct player
 {
-	float	playerx;
-	float	playery;
-	float	directx;
-	float	directy;
-	float	camx;
-	float	camy;
-}			t_dda;
+	float	move_speed;
+	float	rot_speed;
+	float	player_x;
+	float	player_y;
+	float	dir_x;
+	float	dir_y;
+}			t_player;
 
 typedef struct cube3d
 {
@@ -72,8 +72,11 @@ typedef struct cube3d
 	char			*ea;
 	char			*f;
 	char			*c;
+	char			direction;
 	void			*mlx;
 	void			*window;
+	void			*img_ptr;
+	int				*wallpaper;
 	int				*last_walls;
 	int				fd;
 	int				f_color;
@@ -82,16 +85,9 @@ typedef struct cube3d
 	int				y_cord;
 	int				x;
 	int				y;
-	float			angle;
-	void			*img_ptr;
-	float			move_speed;
-	float			rot_speed;
-	float			player_x;
-	float			player_y;
-	char			direction;
 	struct imgs		imgs;
 	struct fds		files;
-	struct dda		dda;
+	struct player	player;
 }					t_game;
 
 t_game	*game_data_creats(char *av);
@@ -114,11 +110,10 @@ int		start(t_game *game);
 int		close_game(t_game *list);
 int		ft_atoi(const char *str);
 int		get_images(t_game *game);
-int		keys(int key, t_game *game);
-int		draw_map(t_game *game);
+int		draw_player(t_game *game);
+int		create_wallpaper(t_game *game);
+int		draw_player_two(t_game *game);
 
-void	keys_two(int key, t_game *game);
-void	create_floor_and_sky(t_game *game);
 void	get_free(t_game *list);
 void	set_nulls(t_game *game);
 void	grilled_draw(t_game *game);
