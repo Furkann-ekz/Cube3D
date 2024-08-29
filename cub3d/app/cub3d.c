@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:41:45 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/29 17:12:18 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/29 17:47:08 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ int	main(int ac, char **av)
 		return (get_free(game), printf("Error: The map cannot be read.\n"));
 	get_direction(game->map, game);
 	if (start(game) == -1)
-		return (close_game(game), printf("Error: This game can't be opened!\n"));
+		return (close_game(game), printf("Error: This game cant be opened!\n"));
 }

@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:22:10 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/29 16:01:43 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/29 18:18:37 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,26 @@ int	create_wallpaper(t_game *game)
 	int	i;
 	int	j;
 
-	game->img_ptr = mlx_new_image(game->mlx, game->x_cord * 156, game->y_cord * 156);
+	game->img_ptr = mlx_new_image(game->mlx, game->x_cord * PIXEL,
+			game->y_cord * PIXEL);
 	if (!(game->img_ptr))
 		return (-1);
 	game->wallpaper = (int *)mlx_get_data_addr(game->img_ptr, &i, &i, &i);
 	if (!(game->wallpaper))
 		return (-1);
 	i = -1;
-	while (++i < (game->y_cord * 156) / 2)
+	while (++i < (game->y_cord * PIXEL) / 2)
 	{
 		j = -1;
-		while (++j < game->x_cord * 156)
-			game->wallpaper[j + i * game->x_cord * 156] = game->c_color;
+		while (++j < game->x_cord * PIXEL)
+			game->wallpaper[j + i * game->x_cord * PIXEL] = game->c_color;
 	}
 	i--;
-	while (++i < game->y_cord * 156)
+	while (++i < game->y_cord * PIXEL)
 	{
 		j = -1;
-		while (++j < game->x_cord * 156)
-			game->wallpaper[j + i * game->x_cord * 156] = game->f_color;
+		while (++j < game->x_cord * PIXEL)
+			game->wallpaper[j + i * game->x_cord * PIXEL] = game->f_color;
 	}
 	return (0);
 }

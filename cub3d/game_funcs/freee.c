@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:57:22 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/29 17:14:16 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/29 17:51:02 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,14 @@ void	list_imgs_free(t_game *list)
 		free(list->imgs.ea);
 	if (list->imgs.we)
 		free(list->imgs.we);
+	if (list->imgs.ea_addr)
+		free(list->imgs.ea_addr);
+	if (list->imgs.no_addr)
+		free(list->imgs.no_addr);
+	if (list->imgs.so_addr)
+		free(list->imgs.so_addr);
+	if (list->imgs.we_addr)
+		free(list->imgs.we_addr);
 }
 
 static void	pointers_free(t_game *list)
@@ -69,10 +77,6 @@ static void	pointers_free(t_game *list)
 		free(list->c);
 	if (list->last_walls)
 		free(list->last_walls);
-	if (list->img_ptr)
-		free(list->img_ptr);
-	if (list->wallpaper)
-		free(list->wallpaper);
 	if (list->fd)
 		close(list->fd);
 	list_imgs_free(list);
@@ -87,13 +91,13 @@ void	get_free(t_game *list)
 		free(list);
 		list = NULL;
 	}
-	system("leaks cub3d");
+	//system("leaks cub3d");
 }
 
 int	close_game(t_game *list)
 {
+	mlx_destroy_image(list->mlx, list->img_ptr);
 	mlx_destroy_window(list->mlx, list->window);
-	free(list->mlx);
 	get_free(list);
 	exit (0);
 }

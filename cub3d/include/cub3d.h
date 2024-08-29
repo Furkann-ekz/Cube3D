@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 07:52:20 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/29 16:03:03 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/29 18:03:04 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@
 # include "../mlx/mlx.h"
 # include "math.h"
 
-# include "string.h"
-
-# define PIXEL 156
+# define PIXEL 96
 # define DARK 0x00000
 # define WHITE 0xFFFFFF
 
@@ -110,10 +108,13 @@ int		get_images(t_game *game);
 int		draw_player(t_game *game);
 int		create_wallpaper(t_game *game);
 int		draw_player_two(t_game *game);
+int		keys(int key, t_game *game);
 
+void	rotate_func(t_game *game, bool rotate);
 void	get_free(t_game *list);
 void	set_nulls(t_game *game);
 void	grilled_draw(t_game *game);
 void	get_position(t_game *game);
+void	re_draw_game(t_game *game, bool right, bool up, bool move);
 
 #endif
