@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:57:22 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/20 18:33:50 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/29 17:14:16 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ static void	pointers_free(t_game *list)
 		free(list->c);
 	if (list->last_walls)
 		free(list->last_walls);
+	if (list->img_ptr)
+		free(list->img_ptr);
+	if (list->wallpaper)
+		free(list->wallpaper);
 	if (list->fd)
 		close(list->fd);
 	list_imgs_free(list);
@@ -83,12 +87,13 @@ void	get_free(t_game *list)
 		free(list);
 		list = NULL;
 	}
-	//system("leaks cub3d");
+	system("leaks cub3d");
 }
 
 int	close_game(t_game *list)
 {
 	mlx_destroy_window(list->mlx, list->window);
+	free(list->mlx);
 	get_free(list);
 	exit (0);
 }

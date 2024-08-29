@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 15:45:36 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/28 19:50:54 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/29 17:14:19 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 
 void	re_draw_game(t_game *game, bool right, bool up, bool move)
 {
-	if (right == true && up == true && !(game->player.player_x >= 6.5) && move == true)
+	if (right == true && up == true && !(game->player.player_x >= 6.5)
+		&& move == true)
 		game->player.player_x += game->player.move_speed;
-	else if (right == true && up == false && !(game->player.player_x <= -0.45) && move == true)
+	else if (right == true && up == false && !(game->player.player_x <= -0.45)
+		&& move == true)
 		game->player.player_x -= game->player.move_speed;
-	else if (right == false && up == true && !(game->player.player_y <= -0.45) && move == true)
+	else if (right == false && up == true && !(game->player.player_y <= -0.45)
+		&& move == true)
 		game->player.player_y -= game->player.move_speed;
-	else if (right == false && up == false && !(game->player.player_y >= 4.5) && move == true)
+	else if (right == false && up == false && !(game->player.player_y >= 4.5)
+		&& move == true)
 		game->player.player_y += game->player.move_speed;
 	mlx_clear_window(game->mlx, game->window);
 	mlx_put_image_to_window(game->mlx, game->window, game->img_ptr, 0, 0);
-	grilled_draw(game);
 	draw_player(game);
 }
 
@@ -36,8 +39,10 @@ void	rotate_func(t_game *game, bool rotate)
 		speed = -game->player.rot_speed;
 	if (rotate == false)
 		speed = game->player.rot_speed;
-	game->player.dir_x = (game->player.dir_x * cos(speed)) - (game->player.dir_y * sin(speed));
-	game->player.dir_y = (game->player.dir_x * sin(speed)) + (game->player.dir_y * cos(speed));
+	game->player.dir_x = (game->player.dir_x * cos(speed))
+		- (game->player.dir_y * sin(speed));
+	game->player.dir_y = (game->player.dir_x * sin(speed))
+		+ (game->player.dir_y * cos(speed));
 }
 
 int	keys(int key, t_game *game)
@@ -72,7 +77,6 @@ int	main_loop(void *p)
 	t_game	*game;
 
 	game = (t_game *)p;
-	mlx_do_key_autorepeaton(game->mlx);
 	mlx_put_image_to_window(game->mlx, game->window, game->img_ptr, 0, 0);
 	draw_player(game);
 	return (0);
@@ -80,12 +84,9 @@ int	main_loop(void *p)
 
 int	mlx_start(t_game *game)
 {
-	if (create_wallpaper(game) == -1)
-		return (-1);
-	if (!(game->wallpaper))
-		return (-1);
+
 	mlx_hook(game->window, 17, 2, close_game, game);
-	mlx_hook(game->window, 2, 1L<<0, keys, game);
+	mlx_hook(game->window, 2, 1L << 0, keys, game);
 	mlx_loop_hook(game->mlx, main_loop, game);
 	mlx_loop(game->mlx);
 	return (0);
@@ -102,11 +103,12 @@ int	start(t_game *game)
 		return (-1);
 	if (get_images(game) == -1)
 		return (-1);
-	game->img_ptr = mlx_new_image(game->mlx, game->x_cord * 156,
-		game->y_cord * 156);
-	if (!game->img_ptr)
-		return (-1);
 	get_position(game);
+	if (create_wallpaper(game) == -1)
+		return (-1);
+	if (!(game->wallpaper))
+		return (-1);
+	grilled_draw(game);
 	if (mlx_start(game) == -1)
 		return (-1);
 	return (0);

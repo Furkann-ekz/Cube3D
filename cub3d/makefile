@@ -16,7 +16,7 @@ SRCS	=	app/cub3d.c							\
 
 
 OBJS	=	$(SRCS:.c=.o)
-CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS	=	-Wall -Wextra -Werror #-fsanitize=address -g
 NAME	=	cub3d
 MINI	=	mlx/libmlx.a
 MLXFLAG	=	-L./mlx -lmlx -framework AppKit -framework OpenGL
@@ -31,11 +31,11 @@ $(NAME): $(MINI) $(OBJS)
 
 clean:
 	rm -rf $(OBJS)
-	make clean -C mlx/
+#	make clean -C mlx/
 
 fclean: clean
 	rm -rf $(NAME)
-	make clean -C mlx/
+#	make clean -C mlx/
 
 re: fclean $(NAME)
 

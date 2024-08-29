@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 14:39:00 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/21 15:02:37 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/29 16:18:57 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[++j] != 0)
 		s3[i + j] = s2[j];
 	s3[i + j] = '\0';
+	free(s1);
+	// free(s2);
 	return (s3);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:22:10 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/28 19:16:56 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/29 16:01:43 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	create_wallpaper(t_game *game)
 		while (++j < game->x_cord * 156)
 			game->wallpaper[j + i * game->x_cord * 156] = game->f_color;
 	}
-	grilled_draw(game);
 	return (0);
 }
 

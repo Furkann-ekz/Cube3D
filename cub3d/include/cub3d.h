@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 07:52:20 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/28 19:29:25 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/08/29 16:03:03 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@
 # include "string.h"
 
 # define PIXEL 156
-# define FOV 90
-# define P_SPEED 1
-# define R_SPEED 1
 # define DARK 0x00000
 # define WHITE 0xFFFFFF
 
