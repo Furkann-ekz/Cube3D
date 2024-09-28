@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:09:12 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/14 18:46:47 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/09/04 16:09:11 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	map_clone(t_game *game, int i)
 	x = 0;
 	z = i;
 	count = pointer_counts(game->map_values + i) + 1;
-	game->map = (char **)malloc(sizeof(char *) * count);
+	game->map = (char **)ft_calloc(1, sizeof(char *) * count);
 	if (!game->map)
 		return (-1);
 	while (game->map_values[z])

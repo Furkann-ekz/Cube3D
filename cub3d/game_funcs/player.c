@@ -6,105 +6,38 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 18:23:56 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/29 18:02:39 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/09/04 13:56:56 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	keys(int key, t_game *game)
+void	move_player(t_game *game, double next_x, double next_y)
 {
-	if (key == 53)
-		return (close_game(game));
-	if (key == 2)
-		re_draw_game(game, true, true, true);
-	if (key == 0)
-		re_draw_game(game, true, false, true);
-	if (key == 1)
-		re_draw_game(game, false, false, true);
-	if (key == 13)
-		re_draw_game(game, false, true, true);
-	if (key == 123) // sol ok tuşu
-	{
-		rotate_func(game, true);
-		re_draw_game(game, false, false, false);
-	}
-	if (key == 124) // sağ ok tuşu
-	{
-		// çizgi çizdir baktığı yöne
-		//
-		rotate_func(game, false);
-		re_draw_game(game, false, false, false);
-	}
-	return (0);
+	t_player	*player;
+
+	player = game->player;
+	if (game->map[(int)(player->player_x
+			+ next_x)][(int)(player->player_y)] != '1')
+		player->player_x += next_x;
+	if (game->map[(int)(player->player_x)][(int)(player->player_y
+			+ next_y)] != '1')
+		player->player_y += next_y;
 }
 
-void	rotate_func(t_game *game, bool rotate)
+void	rotate_player(t_game *game, double rot_speed)
 {
-	float	speed;
+	double	old_dir_x;
+	double	old_plane_x;
 
-	if (rotate == true)
-		speed = -game->player.rot_speed;
-	if (rotate == false)
-		speed = game->player.rot_speed;
-	game->player.dir_x = (game->player.dir_x * cos(speed))
-		- (game->player.dir_y * sin(speed));
-	game->player.dir_y = (game->player.dir_x * sin(speed))
-		+ (game->player.dir_y * cos(speed));
-}
-
-int	draw_player(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = (game->player.player_y * PIXEL) + PIXEL / 2 - 5;
-	while (++i <= (game->player.player_y * PIXEL) + PIXEL / 2 + 5)
-	{
-		j = (game->player.player_x * PIXEL) + PIXEL / 2 - 5;
-		while (++j <= (game->player.player_x * PIXEL) + PIXEL / 2 + 5)
-			mlx_pixel_put(game->mlx, game->window, j, i, DARK);
-	}
-	draw_player_two(game);
-	return (0);
-}
-
-int	draw_player_two(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = ((game->player.player_y + game->player.dir_y) * PIXEL)
-		+ PIXEL / 2 -2;
-	while (++i <= ((game->player.player_y + game->player.dir_y) * PIXEL)
-		+ PIXEL / 2 + 2)
-	{
-		j = ((game->player.player_x + game->player.dir_x) * PIXEL)
-			+ PIXEL / 2 - 2;
-		while (++j <= ((game->player.player_x + game->player.dir_x) * PIXEL)
-			+ PIXEL / 2 + 2)
-			mlx_pixel_put(game->mlx, game->window, j, i, DARK);
-	}
-	return (0);
-}
-
-void	get_position(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (game->map[++i])
-	{
-		j = -1;
-		while (game->map[i][++j])
-		{
-			if (game->map[i][j] == 'N' || game->map[i][j] == 'E'
-				|| game->map[i][j] == 'W' || game->map[i][j] == 'S')
-			{
-				game->player.player_x = j;
-				game->player.player_y = i;
-			}
-		}
-	}
+	old_dir_x = game->player->dir_x;
+	game->player->dir_x = game->player->dir_x * cos(rot_speed)
+		- game->player->dir_y * sin(rot_speed);
+	game->player->dir_y = old_dir_x * sin(rot_speed) + game->player->dir_y
+		* cos(rot_speed);
+	old_plane_x = game->player->plane_x;
+	game->player->plane_x = game->player->plane_x * cos(rot_speed)
+		- game->player->plane_y * sin(rot_speed);
+	game->player->plane_y = old_plane_x * sin(rot_speed) + game->player->plane_y
+		* cos(rot_speed);
 }

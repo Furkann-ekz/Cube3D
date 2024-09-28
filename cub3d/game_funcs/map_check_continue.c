@@ -6,7 +6,7 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:27:54 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/17 11:16:01 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/09/04 15:49:39 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,12 @@ int	line_count(t_game *game)
 
 static int	control(char **map, int i, int j)
 {
-	if (map[i][j] == 'F'
-		&& ((map[i][j + 1] && map[i][j + 1] != 'F' && map[i][j + 1] != '1')
-		|| (j != 0 && map[i][j - 1]
-			&& map[i][j - 1] != 'F' && map[i][j - 1] != '1')
-		|| (map[i + 1] && map[i + 1][j]
-			&& map[i + 1][j] != 'F' && map[i + 1][j] != '1')
-		|| (i != 0 && map[i - 1] && map[i - 1][j]
-			&& map[i - 1][j] != 'F' && map[i - 1][j] != '1')))
+	if (map[i][j] == 'F' && ((map[i][j + 1] && map[i][j + 1] != 'F' && map[i][j
+				+ 1] != '1') || (j != 0 && map[i][j - 1] && map[i][j - 1] != 'F'
+				&& map[i][j - 1] != '1') || (map[i + 1] && map[i + 1][j]
+				&& map[i + 1][j] != 'F' && map[i + 1][j] != '1') || (i != 0
+				&& map[i - 1] && map[i - 1][j] && map[i - 1][j] != 'F' && map[i
+				- 1][j] != '1')))
 		return (-1);
 	return (0);
 }
@@ -72,10 +70,9 @@ int	any_zero_in_outside(char **map)
 		{
 			if (control(map, i, j) == -1)
 				return (-1);
-			if (map[i][j] == '0' && (!map[i + 1] || !map[i + 1][j]))
-			{
+			if (map[i][j] == '0' && ((!map[i + 1] || !map[i + 1][j])
+				|| (!map[i - 1] || !map[i - 1][j])))
 				return (-1);
-			}
 		}
 	}
 	if (map_characters_control(map) == -1)

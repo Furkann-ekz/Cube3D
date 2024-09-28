@@ -6,11 +6,25 @@
 /*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 19:13:13 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/22 16:25:17 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/09/04 16:54:05 by fekiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int	close_game(t_game *game, char *str, int x)
+{
+	if (str)
+		ft_putstr_fd(str, 2);
+	if (game->scene_ptr)
+		mlx_destroy_image(game->mlx, game->scene_ptr);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	get_free(game);
+	if (x)
+		exit(1);
+	exit (0);
+}
 
 int	ft_atoi(const char *str)
 {

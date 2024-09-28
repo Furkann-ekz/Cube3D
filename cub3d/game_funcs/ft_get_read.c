@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_read.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fekiz <fekiz@student.42istanbul.com.tr>    +#+  +:+       +#+        */
+/*   By: eyasa <eyasa@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 14:39:00 by fekiz             #+#    #+#             */
-/*   Updated: 2024/08/29 17:46:51 by fekiz            ###   ########.fr       */
+/*   Updated: 2024/09/01 20:54:51 by eyasa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*ft_get_read(int fd)
 
 	liner = malloc(41);
 	rd = 1;
+	str = NULL;
 	if (!liner)
 		return (NULL);
 	while (rd > 0)
